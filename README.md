@@ -1,109 +1,164 @@
-# CIAB PDF Generator - Web Version
+# Générateur PDF CIAB
 
-This is a web-based version of the CIAB PDF Generator application, built with Astro and React. The application generates PDF documents from Excel data using a predefined layout based on the original desktop application.
+![CIAB Generator](/public/ciab-preview.svg)
 
-## Key Features
+Une application web moderne pour générer les Cartes d'Identification et d'Accompagnement des Bovins (CIAB) à partir de données Excel.
 
-- **100% Client-Side Processing**: All data is processed entirely in the browser. No data is sent to any server.
-- **Excel File Processing**: Upload Excel files with data or use the included sample data.
-- **PDF Generation**: Generate PDFs with precise text positioning based on the CIAB layout.
-- **Document Types**: Support for both "New Identification" and "Duplicata" document types.
-- **Debug Mode**: Visualize text positions and coordinate grid for layout troubleshooting.
-- **Font Size Adjustment**: Adjust text size for better readability.
+## 🇫🇷 Documentation en Français
 
-## Technologies Used
+### À propos
 
-- **[Astro](https://astro.build/)**: Fast, modern web framework
-- **[React](https://reactjs.org/)**: UI components
-- **[pdf-lib](https://pdf-lib.js.org/)**: PDF generation library
-- **[xlsx](https://sheetjs.com/)**: Excel file processing
-- **[Tailwind CSS](https://tailwindcss.com/)**: Styling
+Le Générateur PDF CIAB est une application web qui vous permet de créer facilement et avec précision des Cartes d'Identification et d'Accompagnement des Bovins (CIAB) à partir de vos données Excel. Ces cartes sont essentielles dans le cadre du système national d'identification et de traçabilité animale au Maroc.
 
-## Getting Started
+### Fonctionnalités
 
-### Prerequisites
+- **Traitement 100% côté client** : Toutes vos données sont traitées localement dans votre navigateur, aucune information n'est envoyée à un serveur.
+- **Génération précise** : Les positions des éléments sont calibrées en millimètres pour une conformité exacte avec les exigences officielles.
+- **Personnalisation** : Choisissez entre générer des documents de nouvelle identification ou des duplicatas.
+- **Interface intuitive** : Design moderne et responsive pour une utilisation facile sur tous les appareils.
 
-- Node.js 16+ and npm
+### Installation et démarrage
 
-### Installation
+1. **Prérequis**
+   - Node.js 16+ installé sur votre système
+   - Gestionnaire de paquets npm
 
-1. Clone this repository
-2. Navigate to the project directory
-3. Install dependencies:
+2. **Installation**
+   ```bash
+   # Cloner ce dépôt
+   git clone [URL-du-dépôt]
+   
+   # Accéder au répertoire du projet
+   cd astro-ciab-printer
+   
+   # Installer les dépendances
+   npm install
+   ```
 
-```bash
-npm install
-```
+3. **Démarrer l'application en mode développement**
+   ```bash
+   npm run dev
+   ```
+   L'application sera accessible sur `http://localhost:4321` (ou un autre port si celui-ci est déjà utilisé).
 
-### Development
+4. **Construire pour la production**
+   ```bash
+   npm run build
+   ```
+   Les fichiers de production seront générés dans le dossier `dist/`.
 
-Run the development server:
+5. **Prévisualiser la version de production**
+   ```bash
+   npm run preview
+   ```
 
-```bash
-npm run dev
-```
+### Utilisation
 
-This will start the application at http://localhost:4321
+1. Ouvrez l'application dans votre navigateur
+2. Sélectionnez un fichier Excel contenant vos données de bovins
+3. Choisissez le type de document à générer (Nouvelle Identification ou Duplicata)
+4. Cliquez sur "Générer le PDF"
+5. Téléchargez et enregistrez le document généré
 
-### Building for Production
+### Format du fichier Excel
 
-Build the application:
+Votre fichier Excel doit contenir les colonnes suivantes:
+- `NNI` - Numéro National d'Identification
+- `NomProprietaire` - Nom du propriétaire
+- `NumPieceIdentite` - Numéro de pièce d'identité
+- `AdresseProprietaire` - Adresse du propriétaire
+- `Race` - Race de l'animal
+- `DNaissance` - Date de naissance de l'animal
+- `Sexe` - Sexe de l'animal
 
-```bash
-npm run build
-```
+### Déploiement
 
-This generates a static site in the `dist/` directory that can be deployed to any static hosting service.
+L'application peut être déployée sur n'importe quel service d'hébergement statique:
+- Netlify
+- Vercel
+- GitHub Pages
+- Ou tout autre service d'hébergement statique
 
-### Preview Production Build
+## 🇬🇧 English Documentation
 
-```bash
-npm run preview
-```
+### About
 
-## Deployment
+The CIAB PDF Generator is a web application that allows you to easily and accurately create Bovine Identification and Accompaniment Cards (CIAB) from your Excel data. These cards are essential as part of the national animal identification and traceability system in Morocco.
 
-The application can be deployed to any static site hosting service:
+### Features
 
-### Netlify
+- **100% Client-side Processing**: All your data is processed locally in your browser, no information is sent to any server.
+- **Precise Generation**: Element positions are calibrated in millimeters for exact compliance with official requirements.
+- **Customization**: Choose between generating new identification documents or duplicates.
+- **Intuitive Interface**: Modern and responsive design for easy use on all devices.
 
-The project includes a `netlify.toml` file for easy deployment to Netlify.
+### Installation and Setup
 
-1. Push your code to a Git repository (GitHub, GitLab, etc.)
-2. Connect your repository to Netlify
-3. Netlify will automatically detect the build settings and deploy the site
+1. **Prerequisites**
+   - Node.js 16+ installed on your system
+   - npm package manager
 
-### Other Hosting Options
+2. **Installation**
+   ```bash
+   # Clone this repository
+   git clone [repository-URL]
+   
+   # Navigate to the project directory
+   cd astro-ciab-printer
+   
+   # Install dependencies
+   npm install
+   ```
 
-- **Vercel**: Similar to Netlify, automatic deployment from Git
-- **GitHub Pages**: Deploy the `dist/` directory
-- **Any Static Hosting**: Upload the contents of the `dist/` directory to any static hosting service
+3. **Start the application in development mode**
+   ```bash
+   npm run dev
+   ```
+   The application will be accessible at `http://localhost:4321` (or another port if this one is already in use).
 
-## How It Works
+4. **Build for production**
+   ```bash
+   npm run build
+   ```
+   Production files will be generated in the `dist/` folder.
 
-1. **Data Processing**: The application reads Excel files using the xlsx.js library
-2. **Layout Application**: It applies the embedded CIAB layout data to position text fields
-3. **PDF Generation**: Using pdf-lib, it creates a PDF document with precisely positioned text
-4. **Browser Download**: The generated PDF is provided as a download to the user
+5. **Preview the production version**
+   ```bash
+   npm run preview
+   ```
 
-## Debug Mode
+### Usage
 
-Enable debug mode to see:
+1. Open the application in your browser
+2. Select an Excel file containing your bovine data
+3. Choose the type of document to generate (New Identification or Duplicate)
+4. Click on "Generate PDF"
+5. Download and save the generated document
 
-- A coordinate grid with mm measurements
-- Red position markers showing where text is placed
-- Coordinate labels for each text element
+### Excel File Format
 
-This is particularly useful for troubleshooting layout issues.
+Your Excel file should contain the following columns:
+- `NNI` - National Identification Number
+- `NomProprietaire` - Owner's name
+- `NumPieceIdentite` - ID document number
+- `AdresseProprietaire` - Owner's address
+- `Race` - Animal breed
+- `DNaissance` - Animal date of birth
+- `Sexe` - Animal gender
 
-## Font Size Adjustment
+### Deployment
 
-Use the font size slider to adjust text size between 8pt and 14pt for better readability while maintaining the same positioning.
+The application can be deployed on any static hosting service:
+- Netlify
+- Vercel
+- GitHub Pages
+- Or any other static hosting service
 
-## License
+## Technologies
 
-This project is licensed under the MIT License
+- [Astro](https://astro.build/) - Framework web moderne
+- [React](https://reactjs.org/) - Bibliothèque UI
+- [Tailwind CSS](https://tailwindcss.com/) - Framework CSS utilitaire
+- [pdf-lib](https://pdf-lib.js.org/) - Bibliothèque de génération PDF
+- [xlsx](https://sheetjs.com/) - Bibliothèque de traitement Excel
 
-## Acknowledgements
-
-This application is a port of the original CIAB PDF Generator desktop application, developed to provide a web-based alternative with the same functionality. 
