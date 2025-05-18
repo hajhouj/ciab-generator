@@ -1,18 +1,45 @@
-# Build and Release Folders
-bin-debug/
-bin-release/
-[Oo]bj/
-[Bb]in/
+# Dependencies
+node_modules/
+.bin/
 
-# Other files and folders
-.settings/
+# Astro build output
+dist/
+.astro/
+.server/
 
-# Executables
-*.swf
-*.air
-*.ipa
-*.apk
+# Environment files
+.env
+.env.local
+.env.*.local
 
-# Project files, i.e. `.project`, `.actionScriptProperties` and `.flexProperties`
-# should NOT be excluded as they contain compiler settings and other important
-# information for Eclipse / Flash Builder.
+# Logs
+*.log
+npm-debug.log*
+yarn-error.log*
+
+# Editor directories and files
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Temp files
+*.tmp
+*.bak
+
+# Optional
+.cache/
+.temp/
+public/build/ # if using Vite asset handling
