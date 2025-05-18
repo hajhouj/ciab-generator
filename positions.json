@@ -1,0 +1,36 @@
+{
+  "NNI": [
+    { "from_left": 45, "from_top": 28 },
+    { "from_right": 68, "from_top": 57 }
+  ],
+  "NomProprietaire": [
+    { "from_left": 42, "from_top": 42 },
+    { "from_left": 100, "from_top": 29 }
+  ],
+  "NumPieceIdentite": [
+    { "from_left": 70, "from_top": 52 },
+    { "from_left": 30, "from_top": 29 }
+  ],
+  "AdresseProprietaire": [
+    { "from_left": 60, "from_top": 57 },
+    { "from_left": 100, "from_top": 41 }
+  ],
+  "Race": [
+    { "from_left": 50, "from_top": 75 },
+    { "from_right": 80, "from_top": 75 }
+  ],
+  "DNaissance": [
+    { "from_left": 45, "from_top": 80 },
+    { "from_right": 80, "from_top": 65 }
+  ],
+  "Sexe": [
+    { "from_left": 90, "from_top": 80 },
+    { "from_right": 80, "from_top": 70 }
+  ],
+  "BouclePaysOrigine": [],
+  "RaceMere": [],
+  "BoucleMere": [],
+  "RacePere": [],
+  "BouclePere": [],
+  "Evenements": []
+}

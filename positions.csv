@@ -1,0 +1,14 @@
+"Column","Position 1 from the left in mm","Position 1 From the top in mm","Position 2 From the right  in mm","Position 2 From the top in mm","Position 3 From the left in mm","Position 3 from the top in mm"
+"NNI",45,28,68,57,,
+"NomProprietaire",42,42,,,100,29
+"NumPieceIdentite",70,52,,,30,29
+"AdresseProprietaire",60,57,,,100,41
+"Race",50,75,80,75,,
+"DNaissance",45,80,80,65,,
+"Sexe",90,80,80,70,,
+"BouclePaysOrigine",,,,,,
+"RaceMere",,,,,,
+"BoucleMere",,,,,,
+"RacePere",,,,,,
+"BouclePere",,,,,,
+"Evenements",,,,,,
