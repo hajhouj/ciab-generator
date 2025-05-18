@@ -1,10 +1,8 @@
 # Générateur PDF CIAB
 
-![CIAB Generator](/public/ciab-preview.svg)
-
 Une application web moderne pour générer les Cartes d'Identification et d'Accompagnement des Bovins (CIAB) à partir de données Excel.
 
-## 🇫🇷 Documentation en Français
+## Documentation 
 
 ### À propos
 
@@ -78,81 +76,6 @@ L'application peut être déployée sur n'importe quel service d'hébergement st
 - Vercel
 - GitHub Pages
 - Ou tout autre service d'hébergement statique
-
-## 🇬🇧 English Documentation
-
-### About
-
-The CIAB PDF Generator is a web application that allows you to easily and accurately create Bovine Identification and Accompaniment Cards (CIAB) from your Excel data. These cards are essential as part of the national animal identification and traceability system in Morocco.
-
-### Features
-
-- **100% Client-side Processing**: All your data is processed locally in your browser, no information is sent to any server.
-- **Precise Generation**: Element positions are calibrated in millimeters for exact compliance with official requirements.
-- **Customization**: Choose between generating new identification documents or duplicates.
-- **Intuitive Interface**: Modern and responsive design for easy use on all devices.
-
-### Installation and Setup
-
-1. **Prerequisites**
-   - Node.js 16+ installed on your system
-   - npm package manager
-
-2. **Installation**
-   ```bash
-   # Clone this repository
-   git clone [repository-URL]
-   
-   # Navigate to the project directory
-   cd astro-ciab-printer
-   
-   # Install dependencies
-   npm install
-   ```
-
-3. **Start the application in development mode**
-   ```bash
-   npm run dev
-   ```
-   The application will be accessible at `http://localhost:4321` (or another port if this one is already in use).
-
-4. **Build for production**
-   ```bash
-   npm run build
-   ```
-   Production files will be generated in the `dist/` folder.
-
-5. **Preview the production version**
-   ```bash
-   npm run preview
-   ```
-
-### Usage
-
-1. Open the application in your browser
-2. Select an Excel file containing your bovine data
-3. Choose the type of document to generate (New Identification or Duplicate)
-4. Click on "Generate PDF"
-5. Download and save the generated document
-
-### Excel File Format
-
-Your Excel file should contain the following columns:
-- `NNI` - National Identification Number
-- `NomProprietaire` - Owner's name
-- `NumPieceIdentite` - ID document number
-- `AdresseProprietaire` - Owner's address
-- `Race` - Animal breed
-- `DNaissance` - Animal date of birth
-- `Sexe` - Animal gender
-
-### Deployment
-
-The application can be deployed on any static hosting service:
-- Netlify
-- Vercel
-- GitHub Pages
-- Or any other static hosting service
 
 ## Technologies
 
