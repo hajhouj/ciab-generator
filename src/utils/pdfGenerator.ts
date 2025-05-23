@@ -130,8 +130,6 @@ function generateVerso(
     const y2 = layout['Position 2 From the top in mm'];
     
     if (x2 != null && y2 != null) {
-      const textWidth = font.widthOfTextAtSize(value, DEFAULT_FONT_SIZE);
-      
       // Get position adjustment for this field on verso (odd) page
       const adjustment = getPositionAdjustment('verso', fieldName);
       
@@ -142,13 +140,30 @@ function generateVerso(
       const x2Points = pageWidth - (adjustedX2 * MM_TO_POINTS);
       const y2Points = pageHeight - (adjustedY2 * MM_TO_POINTS);
       
-      page.drawText(value, {
-        x: x2Points - textWidth,
-        y: y2Points,
-        size: DEFAULT_FONT_SIZE,
-        font: font,
-        color: rgb(0, 0, 0),
-      });
+      // Check if the field should be left-aligned
+      const leftAlignedFields = ['NNI', 'DNaissance', 'Sexe', 'Race'];
+      const shouldLeftAlign = leftAlignedFields.includes(fieldName);
+      
+      // If it's one of the specified fields, left-align it instead of right-align
+      if (shouldLeftAlign) {
+        page.drawText(value, {
+          x: x2Points,
+          y: y2Points,
+          size: DEFAULT_FONT_SIZE,
+          font: font,
+          color: rgb(0, 0, 0),
+        });
+      } else {
+        // For other fields, keep right alignment
+        const textWidth = font.widthOfTextAtSize(value, DEFAULT_FONT_SIZE);
+        page.drawText(value, {
+          x: x2Points - textWidth,
+          y: y2Points,
+          size: DEFAULT_FONT_SIZE,
+          font: font,
+          color: rgb(0, 0, 0),
+        });
+      }
     }
   }
 }
@@ -210,19 +225,19 @@ function generateRecto(
  */
 function addDuplicataWatermark(page: any, font: any, pageWidth: number, pageHeight: number): void {
   const text = 'DUPLICATA';
-  const fontSize = 60;
+  const fontSize = 100;
   const textWidth = font.widthOfTextAtSize(text, fontSize);
   
   page.drawText(text, {
     x: (pageWidth - textWidth) / 2,
-    y: pageHeight / 2,
+    y: 0,
     size: fontSize,
     font: font,
     color: rgb(0.9, 0.9, 0.9),
     opacity: 0.5,
     rotate: {
       type: 'degrees',
-      angle: -45,
+      angle: 45,
     },
   });
 } 

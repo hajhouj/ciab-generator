@@ -14,14 +14,17 @@ export async function readExcelData(file: File): Promise<ExcelRow[]> {
     reader.onload = (e) => {
       try {
         const data = new Uint8Array(e.target?.result as ArrayBuffer);
-        const workbook = XLSX.read(data, { type: 'array' });
+        const workbook = XLSX.read(data, { type: 'array', cellDates: true });
         
         // Get first sheet
         const firstSheetName = workbook.SheetNames[0];
         const worksheet = workbook.Sheets[firstSheetName];
         
         // Convert to JSON
-        const rows = XLSX.utils.sheet_to_json<ExcelRow>(worksheet);
+        const rows = XLSX.utils.sheet_to_json<ExcelRow>(worksheet, { 
+          raw: false,
+          dateNF: 'dd/mm/yyyy' 
+        });
         
         // Sanitize data
         const sanitizedRows = sanitizeExcelData(rows);
@@ -99,12 +102,58 @@ export function formatDate(value: any): string {
     return '';
   }
   
+  // Handle Date objects
   if (value instanceof Date) {
     return value.toLocaleDateString('fr-FR', {
       day: '2-digit',
       month: '2-digit',
       year: 'numeric'
     });
+  }
+  
+  // Handle numeric Excel dates (Excel stores dates as serial numbers)
+  if (typeof value === 'number' && !isNaN(value)) {
+    try {
+      // Convert Excel serial date to JavaScript Date
+      // Excel's epoch starts on January 0, 1900
+      const excelEpoch = new Date(1899, 11, 30);
+      const millisPerDay = 24 * 60 * 60 * 1000;
+      const date = new Date(excelEpoch.getTime() + value * millisPerDay);
+      
+      // Check if it's a reasonable date (between 1950 and 2050)
+      const year = date.getFullYear();
+      if (year >= 1950 && year <= 2050) {
+        return date.toLocaleDateString('fr-FR', {
+          day: '2-digit',
+          month: '2-digit',
+          year: 'numeric'
+        });
+      }
+    } catch (error) {
+      console.error('Error converting numeric date:', error);
+    }
+  }
+  
+  // Handle string that might contain a date
+  if (typeof value === 'string') {
+    const dateMatch = value.match(/^(\d{1,2})[\/\-\.](\d{1,2})[\/\-\.](\d{2,4})$/);
+    if (dateMatch) {
+      try {
+        const day = parseInt(dateMatch[1], 10);
+        const month = parseInt(dateMatch[2], 10) - 1; // JS months are 0-indexed
+        const year = parseInt(dateMatch[3], 10);
+        const fullYear = year < 100 ? (year < 50 ? 2000 + year : 1900 + year) : year;
+        
+        const date = new Date(fullYear, month, day);
+        return date.toLocaleDateString('fr-FR', {
+          day: '2-digit',
+          month: '2-digit',
+          year: 'numeric'
+        });
+      } catch (error) {
+        console.error('Error parsing date string:', error);
+      }
+    }
   }
   
   return String(value);
